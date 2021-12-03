@@ -14,7 +14,9 @@
 
       <div class="mb-4">
         <label for="email" class="sr-only">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{ old('email')}}">
+        <input type="email" name="email" id="email" placeholder="Email"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror"
+          value="{{ old('email')}}">
 
         @error('email')
         <p class="text-red-500 mt-2 text-sm"> {{$message}}</p>
@@ -23,11 +25,20 @@
 
       <div class="mb-4">
         <label for="password" class="sr-only">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror" value="{{ old('password')}}">
+        <input type="password" name="password" id="password" placeholder="Password"
+          class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('password') border-red-500 @enderror"
+          value="{{ old('password')}}">
 
         @error('password')
         <p class="text-red-500 mt-2 text-sm"> {{$message}}</p>
         @enderror
+      </div>
+
+      <div class="mb-4">
+        <div class="flex items-center">
+          <input type="checkbox" name="remember" id="remember" class="mr-2">
+          <label for="remember">Remember me</label>
+        </div>
       </div>
 
       <div>
