@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PostLikeController extends Controller
+class CommentLikeController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function store(Post $post, Request $request)
+    public function store(Post $post, Comment $comment, Request $request)
     {
-        if ($post->likedBy($request->user())) {
+        if ($comment->likedBy($request->user())) {
             return response(null, 409);
         };
 
-        $post->likes()->create(
+        $comment->likes()->create(
             [
                 'user_id' => $request->user()->id
             ]
@@ -27,9 +28,9 @@ class PostLikeController extends Controller
         return back();
     }
 
-    public function destroy(Post $post, Request $request)
+    public function destroy(Post $post, Comment $comment, Request $request)
     {
-        $request->user()->likes()->where('post_id', $post->id)->delete();
+        $request->user()->likes()->where('comment_id', $comment->id)->delete();
 
         return back();
     }
