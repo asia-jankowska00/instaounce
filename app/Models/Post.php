@@ -10,7 +10,8 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'body'
+        'body',
+        'image_path'
     ];
 
     public function user()

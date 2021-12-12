@@ -4,7 +4,7 @@
 <div class="flex justify-center">
   <div class="w-8/12 bg-white p-6 rounded-lg">
     @auth
-    <form action="{{ route('posts') }}" method="post" class="mb-4">
+    <form action="{{ route('posts') }}" method="post" enctype="multipart/form-data" class="mb-4">
       @csrf
       <div class="mb-4">
         <label for="body" class="sr-only">Body</label>
@@ -13,6 +13,16 @@
           placeholder="Post something!"></textarea>
 
         @error('body')
+        <div class="text-red-500 mt-2 text-sm">
+          {{ $message }}
+        </div>
+        @enderror
+      </div>
+
+      <div class="mb-4">
+        <input type="file" name="image" class="form-control">
+
+        @error('image')
         <div class="text-red-500 mt-2 text-sm">
           {{ $message }}
         </div>

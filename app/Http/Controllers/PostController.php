@@ -26,10 +26,16 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'body' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $imageName = time().'.'.$request->image->extension();  
+
+        $request->image->move(public_path('images'), $imageName);
+
         $request->user()->posts()->create([
-            'body' => $request->body
+            'body' => $request->body,
+            'image_path' => $imageName,
         ]);
 
         return back();

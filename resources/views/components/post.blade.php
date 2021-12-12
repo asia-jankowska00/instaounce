@@ -5,6 +5,12 @@
         class="text-gray-600 text-sm">{{
         $post->created_at->diffForHumans() }}</span>
 
+    @if($post->image_path)
+    <div class="w-1/3">
+        <img src="{{ asset('images/' . $post->image_path)}}" />
+    </div>
+    @endif
+
     <p class="mb-2">{{ $post->body }}</p>
 
 
@@ -12,7 +18,7 @@
     <form action="{{ route('posts.destroy', $post) }}" method="post">
         @csrf
         @method('DELETE')
-        <button type="submit" class="text-blue-500">Delete</button>
+        <button type="submit" class="text-red-500">Delete</button>
     </form>
     @endcan
 
