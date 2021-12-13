@@ -10,11 +10,13 @@
 
     <div class="p-5">
         <a href="{{ route('users.posts', $post->user)}}" class="font-bold">{{ $post->user->username }}</a> <span
-            class="text-gray-600 text-sm">{{
-            $post->created_at->diffForHumans() }}</span>
+            class="text-gray-600 text-sm">
+            {{-- format the created at date to 'X ago' --}}
+            {{ $post->created_at->diffForHumans() }}</span>
 
         <p class="font-normal text-gray-700 mb-3 dark:text-gray-400">{{ $post->body }}</p>
 
+    {{-- don't show the 'view post' button if the route is posts.show --}}
         @unless(Route::is('posts.show') )
         <a href="{{ route('posts.show', $post)}}"
             class="mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -37,11 +39,13 @@
 
         <div class="flex items-center">
             @auth
+            {{-- if post is not liked by current user, show like button --}}
             @if (!$post->likedBy(auth()->user()))
             <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
                 @csrf
                 <button type="submit" class="text-blue-500">Like</button>
             </form>
+            {{-- if it is liked, show 'unlike' button --}}
             @else
             <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
                 @csrf

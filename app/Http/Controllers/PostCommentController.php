@@ -13,7 +13,7 @@ class PostCommentController extends Controller
         $this->middleware(('auth'));
     }
 
-
+    // Creates a comment
     public function store(Post $post, Request $request)
     {
         $this->validate($request, [
@@ -30,6 +30,7 @@ class PostCommentController extends Controller
         return back();
     }
 
+    // Deletes a comment
     public function destroy(Post $post, Request $request)
     {
         $request->user()->comments()->where('post_id', $post->id)->delete();

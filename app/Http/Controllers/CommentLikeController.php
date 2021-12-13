@@ -13,6 +13,7 @@ class CommentLikeController extends Controller
         $this->middleware('auth');
     }
 
+    // Likes comment
     public function store(Post $post, Comment $comment, Request $request)
     {
         if ($comment->likedBy($request->user())) {
@@ -28,6 +29,7 @@ class CommentLikeController extends Controller
         return back();
     }
 
+    // Un-likes comment
     public function destroy(Post $post, Comment $comment, Request $request)
     {
         $request->user()->likes()->where('comment_id', $comment->id)->delete();

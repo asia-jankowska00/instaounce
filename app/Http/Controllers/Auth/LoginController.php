@@ -13,11 +13,13 @@ class LoginController extends Controller
         $this->middleware((['guest']));
     }
 
+    // Shows the login page
     public function index()
     {
         return view('auth.login');
     }
 
+    // Logs user in
     public function store(Request $request)
     {
         $this->validate($request, [

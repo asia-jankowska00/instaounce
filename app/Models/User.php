@@ -43,21 +43,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // The posts the user has created
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
 
+    // The likes the user has 'made'
     public function likes()
     {
         return $this->hasMany(Like::class);
     }
 
+    // The likes the user has receiver
     public function receivedLikes()
     {
         return $this->hasManyThrough(Like::class, Post::class);
     }
 
+    // The user's comments
     public function comments()
     {
         return $this->hasMany(Comment::class);

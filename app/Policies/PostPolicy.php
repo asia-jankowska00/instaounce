@@ -10,6 +10,7 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
+    // Only the owner user can delete a post
     public function delete(User $user, Post $post)
     {
         return $user->id === $post->user_id;

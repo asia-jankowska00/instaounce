@@ -7,6 +7,7 @@
   <x-post :post="$post" />
   @endforeach
 
+  {{-- pagination links and current page info --}}
   {{ $posts->links() }}
   @else
   <p>There are no posts</p>

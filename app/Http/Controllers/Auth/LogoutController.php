@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LogoutController extends Controller
 {
+    // Logs the user out
     public function store()
     {
         Auth::logout();

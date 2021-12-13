@@ -10,16 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+
+    // Only allow guests to access these routes
     public function __construct()
     {
         $this->middleware((['guest']));
     }
 
+    // Shows the registration form
     public function index()
     {
         return view('auth.register');
     }
 
+    // Registers the user
     public function store(Request $request)
     {
         $this->validate($request, [

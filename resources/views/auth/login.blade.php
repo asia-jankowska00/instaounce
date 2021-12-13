@@ -10,6 +10,7 @@
     @endif
 
     <form action="{{ route('login')}}" method="post">
+      {{-- add a csrf token to the request to identify and validate it as coming from this app --}}
       @csrf
 
       <div class="mb-4">
@@ -18,6 +19,7 @@
           class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror"
           value="{{ old('email')}}">
 
+          {{-- show any validation errors --}}
         @error('email')
         <p class="text-red-500 mt-2 text-sm"> {{$message}}</p>
         @enderror
