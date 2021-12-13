@@ -14,7 +14,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'body' => $this->faker->sentence(20)
+            'body' => $this->faker->sentence(20),
+            'image_path' => 'cat.jpg'
         ];
     }
 }

@@ -21,6 +21,10 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
+    
+    public function new() {
+        return view('posts.new');
+    }
 
     public function store(Request $request)
     {
@@ -38,7 +42,7 @@ class PostController extends Controller
             'image_path' => $imageName,
         ]);
 
-        return back();
+        return redirect()->route('posts');
     }
 
     public function destroy(Post $post)
